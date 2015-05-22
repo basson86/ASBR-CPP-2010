@@ -1,0 +1,22 @@
+# CMake generation dependency list for this directory.
+C:/temp/Assign2/Assign2/CMakeLists.txt
+C:/temp/Assign2/Assign2/CMakeFiles/CMakeSystem.cmake
+C:/temp/Assign2/Assign2/CMakeFiles/CMakeCXXCompiler.cmake
+C:/temp/Assign2/Assign2/CMakeFiles/CMakeCCompiler.cmake
+C:/Program Files/CMake 2.8/share/cmake-2.8/Modules/CMakeSystemSpecificInformation.cmake
+C:/Program Files/CMake 2.8/share/cmake-2.8/Modules/CMakeGenericSystem.cmake
+C:/Program Files/CMake 2.8/share/cmake-2.8/Modules/Platform/gcc.cmake
+C:/Program Files/CMake 2.8/share/cmake-2.8/Modules/Platform/Windows.cmake
+C:/Program Files/CMake 2.8/share/cmake-2.8/Modules/Platform/WindowsPaths.cmake
+C:/Program Files/CMake 2.8/share/cmake-2.8/Modules/CMakeCXXInformation.cmake
+C:/Program Files/CMake 2.8/share/cmake-2.8/Modules/Platform/Windows-cl.cmake
+C:/temp/Assign2/Assign2/CMakeFiles/CMakeCPlatform.cmake
+C:/temp/Assign2/Assign2/CMakeFiles/CMakeCXXPlatform.cmake
+C:/Program Files/CMake 2.8/share/cmake-2.8/Modules/Platform/cl.cmake
+C:/temp/Assign2/Assign2/CMakeFiles/CMakeRCCompiler.cmake
+C:/Program Files/CMake 2.8/share/cmake-2.8/Modules/CMakeRCInformation.cmake
+C:/Program Files/CMake 2.8/share/cmake-2.8/Modules/CMakeCommonLanguageInclude.cmake
+C:/Program Files/CMake 2.8/share/cmake-2.8/Modules/CMakeCInformation.cmake
+C:/Program Files/CMake 2.8/share/cmake-2.8/Modules/CMakeCommonLanguageInclude.cmake
+C:/Program Files/CMake 2.8/share/cmake-2.8/Modules/FindOpenGL.cmake
+C:/Program Files/CMake 2.8/share/cmake-2.8/Modules/FindGLUT.cmake

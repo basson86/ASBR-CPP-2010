@@ -1,0 +1,141 @@
+/**
+@mainpage 
+
+
+@section secCS336 CS336: Sampling-Based Motion Planning with a Single Goal Region
+
+The objective is to compute a collision-free path from an initial
+placement of the robot to a goal region while avoiding collisions with
+obstacles. The robot can translate and rotate.  You can implement
+either a standard roadmap-based approach (e.g., PRM, OBPRM,
+GaussianPRM, BridgePRM), a standard tree-based approach (e.g., RRT,
+EST), or your own sampling-based algorithm which builds upon the
+standard algorithms.   
+
+  <b>Testing</b>: You need to run your algorithm <tt>3</tt> times on
+  each of the following scenes: <tt>scene1a.txt</tt>,
+  <tt>scene2a.txt</tt>, <tt>scene3a.txt</tt>.  Set the maximum time of
+  each run to 120s. Prepare a table with the results, i.e., for each of
+  the 3 runs on each scene indicate whether the motion planner solved
+  the problem in the alloted time and if so how much time did it
+  actually take. 
+ 
+  <b>Note</b>: 15pts will be taken off if you do not include the
+  results table with your submission.
+ 
+  <b>Extra Credit</b>: Students in CS336 can gain extra credit by doing
+  the assignment for CS436 instead of the assignment for CS336. In such
+  case, your assignment will be graded out of 115 points.
+
+
+@section secCS436 CS436: Sampling-Based Motion Planning with Multiple Goal Regions
+
+There are several goal regions, G<sub>1</sub>, G<sub>2</sub>, ...,
+G<sub>m</sub>. Each goal region G<sub>i</sub> is associated with a
+reward R<sub>i</sub>. The objective is to compute a collision-free
+path from that maximizes the total rewards accumulated along the
+path. More specifically, when the robot reaches the goal region
+G<sub>i</sub>, the robot gets the reward R<sub>i</sub> associated with
+G<sub>i</sub>. The total reward collected along a path is equal to the
+sum of the rewards of the goal regions reached by the robot along the
+path. So, if a path A reaches goal regions G<sub>1</sub>,
+G<sub>4</sub>, G<sub>8</sub>, the total reward collected by the robot
+along the path A is R<sub>1</sub> + R<sub>4</sub> + R<sub>8</sub>.
+
+You should strive to develop a sampling-based motion-planning method
+that, given an upper bound on computation time, computes a path that
+avoids collisions and collects as high rewards as possible.  Note that
+you do not need to develop a new sampling-based motion-planning method
+from scratch. You will be able to obtain good results by adapting
+standard sampling-based approaches (either roadmap or tree
+approaches).
+
+  <b>Algorithm Description</b>: 15pts will be taken off if you do
+  not include the description of your algorithm with your submission.
+ 
+  <b>Testing</b>: You need to run your algorithm <tt>3</tt> times on
+  each of the following scenes: <tt>scene1b.txt</tt>,
+  <tt>scene2c.txt</tt>, <tt>scene3d.txt</tt>.  Set the maximum time of
+  each run to 120s. Prepare a table with the results, i.e., for each of
+  the 3 runs on each scene indicate the total rewards collected by your
+  best solution and the time it took the motion planner to compute such
+  a path. 
+ 
+  <b>Note</b>: 15pts will be taken off if you do not include the
+  results table with your submission.
+  
+  <b>Extra Credit</b>: Results on <tt>scene3d.txt</tt> will be used for
+  extra credit. Specifically, your algorithms will be ranked based on
+  the total rewards accumulated for all 3 runs on <tt>scene3d.txt</tt>.
+  Note that each run is limited to 120s of maximum running time. In case
+  of ties, algorithms with smaller total running times will be ranked
+  higher. Extra credit will then be given as follows:
+  - +15pts for the best algorithm
+  - +10pts for the 2nd best algorithm
+  - +5pts for the 3rd best algorithm
+  - +3pts for the 4th best algorithm
+  .
+
+
+@section secSubmit When to Submit?/What to Submit?/How to Submit?
+- <b>Due Date: April 7th, 23:59PM EST</b>
+- Submit your code, results table, (CS436: also algorithm description).
+- Special instructions should be included in a README.txt file.
+- Put everything in one directory named {CS336 or
+  CS436}_Assign2_{LastName}{FirstInitial}, e.g., CS336_Assign2_PlakuE
+- Compress the directory (tar.gz or zip) and email it to <b>cs336/AT/cs.jhu.edu</b>
+- 5pts will be taken off if submission does not follow these guidelines
+.
+
+@section secSupportCode Support Code -- General Description
+ 
+Support code is provided for this assignment to facilitate your
+implementation (see documentation for detailed descriptions).
+The main classes in the support code are the following:
+- Utils: provides various utilies for pseudorandom number generation,
+         measuring running time, and polygon-polygon intersections
+	 [already implemented]
+- Simulator : provides access to the robot, the obstacles, and the goal regions [already implemented]
+- Graphics : provides graphical display and interface for running motion planner [already implemented]
+- MotionPlanner : interface for your motion planning algorithm [you need to implement it]
+.
+
+<b>CS336 Note</b>: The same simulation code is used for both CS336 and
+CS436. In CS336, you just need to use the first goal region (scenes
+scene1a.txt, scene2a.txt, scene3a.txt contain just one goal region).
+
+@section sec_compiling Support Code: Installing/Compiling/Running
+  - Install GLUT: Follow the same instructions as in Assign1
+  - Download support code <a href="Assign2.zip">Assign2.zip</a> and unzip
+  - Compile
+@code
+#Linux/Mac OS X
+         cd Assign2
+         cmake . 
+         make
+
+#Windows (Microsoft Visual Studio)
+	open command prompt
+        cd Assign2
+        cmake -G "Visual Studio 9 2008"
+        go to the Assignment1 folder and double-click on the .sln file
+        build the project
+@endcode
+  - Run the code (from the prompt command inside directory Assign2)
+@code
+#Linux/Mac OS X
+       ./bin/MotionPlanner scene.txt time
+
+#Windows  
+       open command prompt
+       cd Assign2
+       bin\Debug\MotionPlanner scene.txt time
+@endcode
+    where 
+    - scene.txt is one of the provided scene files
+    - time is the maximum running time (in seconds) given to the
+       motion planner   
+
+*/
+
+

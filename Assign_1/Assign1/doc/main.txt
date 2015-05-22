@@ -1,0 +1,180 @@
+/**
+@mainpage 
+
+@section secWrittenPart Written Part (30 pts)
+- Following the proofs for Bug1, write proofs for the following lemmas:
+  - <b>(5pts)</b> Bug2 meets only a finite number of obstacles. Moreover, the only obstacles that can
+    be met are those that intersect the straight-line segment from init to goal 
+  - <b>(8pts)</b> Bug2 will pass any point of the i-th obstacle boundary at most n<sub>i</sub>/2 times, where n<sub>i</sub>
+    is the number of intersections between the straight line (init,
+    goal) and the i-th obstacle
+  .
+- Design your own bug algorithm, which we will call MyBug. MyBug should be different from the
+  algorithms covered in class. 
+  - <b>(8pts)</b> Explain the general idea and the basic steps of your algorithm
+  - <b>(2pts)</b> Draw a simple scene and trace your algorithm
+  - <b>(4pts)</b> Draw a scene where your algorithm does better than Bug0 (if you
+    cannot, then you need to redesign your algorithm)
+  - <b>(3pts)</b> What are the strengths and weaknesses of your algorithm in
+    comparison to the other Bug algorithms? 
+  .
+.
+
+@section secProgramming Programming Part (70pts)
+
+The robot is modeled as a disk with a certain radius.  The
+robot is equipped with a simple range sensor. When obstacles are within the
+sensing range, the sensor can determine the minimum distance to the
+obstacles and the nearest point to the obstacles from the center of
+the robot. The sensing range is always greater than the robot radius. 
+The robot should never collide with the obstacles. You need to
+implement the following functionality:
+- <b>(5pts)</b> MoveTowardGoal 
+- <b>(15pts)</b> FollowObstacleBoundary
+- <b>(35pts)</b> [CS336: Bug1 <b>or</b> Bug2] &nbsp;  [CS436: Bug1 <b>and</b> Bug2]
+- <b>(15pts)</b> Your own bug (MyBug) algorithm 
+.
+Support code is provided, which should greatly facilitate
+implementation. Read more in the SupportCode section.
+
+@section secExtra Extra Credit (applicable to both CS336 and CS436)
+- Student with the best MyBug algorithm gets <b>+10pts</b>
+- Student with the 2nd best MyBug algorithm gets <b>+5pts</b>
+- Student with the 3rd best MyBug algorithm gets <b>+3pts</b>
+- <b>Note:</b> Bug algorithms will be ranked based on the overall path
+  length produced for all the seven test scenes, which are provided to you as part of the support code.  
+.
+
+@section secSubmit When to Submit?/What to Submit?/How to Submit?
+- <b>Due Date: Feb 17th, 23:59PM EST</b>
+- Submit answers to written part. PDF preferred, doc accepted. 
+- Submit your code.
+- Put everything in one directory named {CS336 or
+  CS436}_Ass1_{LastName}{FirstInitial}, e.g., CS336_Ass1_PlakuE
+- Compress the directory (tar.gz or zip) and email it to <b>cs336/AT/cs.jhu.edu</b>
+.
+
+@section secSupportCode Support Code -- General Description
+ 
+Support code is provided for this assignment to facilitate your
+implementation (see documentation for detailed descriptions).
+The main classes in the support code are the following:
+- Simulator : simulates robot motion and sensor [already implemented]
+- Graphics : provides graphical display and allows for problem setup [already implemented]
+- BugAlgorithms : interface for various bug algorithms [you need to implement it]
+.
+The program flow is as follows:
+- Graphics uses a timer to call BugAlgorithms
+- BugAlgorithms is responsible for selecting the appropriate 
+  displacement of the robot center along the x and y axis, i.e.,
+  determining how the robot should move. BugAlgorithms has access to
+  Simulator. 
+- Simulator provides access to
+  the current robot position, goal position, and sensor readings. You
+  should use this information to implement the various parts in your
+  programming assignment.
+    - m_simulator->GetRobotRadius(): return robot radius
+    - m_simulator->GetRobotCenterX(): return x position of robot center
+    - m_simulator->GetRobotCenterY(): return y position of robot center
+    - m_simulator->GetSensorRadius(): return sensor range
+    - m_simulator->TakeSensorReading(xmin, ymin): This function returns the minimum distance from 
+      the current robot position to the obstacles.  Upon return, xmin and ymin contain the x-coord and y-coord 
+      of the obstacle point that achieves this miminum. If the obstacles are outside the sensing range, 
+      then the sensing range is returned and xmin and ymin are set to HUGE_VAL
+    - m_simulator->GetGoalRadius(): return goal radius
+    - m_simulator->GetGoalCenterX(): return x position of goal center
+    - m_simulator->GetGoalCenterY(): return y position of goal center
+    - m_simulator->HasRobotReachedGoal(): return true iff robot has reached goal
+    - m_simulator->GetDistanceFromRobotToGoal(): return distance from
+      robot center to goal center
+    .
+   Simulator is considered as an input to your implementation of
+   the bug algorithms. As such, you should not make changes to ::Simulator.
+   In particular, your bug algorithms should only access the public functions
+   of ::Simulator. If, however, you see that the functionality provided by the ::Simulator class is not
+      sufficient to implement your bug algorithms, please contact the support staff for this 
+      project (see main webpage for contact information). In your email, succinctly describe
+      the functionality you intend to add to this class and the reasons as to why it is 
+      necessary for your implementation of the bug algorithms.
+
+- Graphics then uses Simulator 
+  to apply the selected displacement and move the robot accordingly.
+.
+
+
+@section sec_compiling Support Code: Installing/Compiling/Running
+  - Install a compiler
+    - Unix/Linux: Install g++
+    - MacOS: Install gcc. The easiest way is to download the Apple
+	  Developer Tools from http://connect.apple.com (free, but
+	  requires registration). You can also install gcc through a
+	  package manager such as MacPorts or Fink       
+    - Windows: Install a compiler such as <a
+      href="http://www.microsoft.com/express/Downloads/#2008-Visual-CPP">
+      Microsoft Visual C++ Express Edition 2008</a> (it's free)
+
+  - Install GLUT
+    - Unix/Linux: Use your package manager if not already installed
+    - MacOS: All set, should already be installed
+    - Windows: A pre-compiled version of GLUT can be found <a
+       href="http://www.xmission.com/~nate/glut.html">here</a>.
+       - Download <a href="http://www.xmission.com/~nate/glut/glut-3.7.6-bin.zip">glut-3.7.6-bin.zip</a>
+       - Extract the files from the archive
+       - Put glut32.dll inside C:/Windows/system32
+       - Put glut.h inside C:/Program Files/Microsoft SDKs/Windows/"latest version"/Include/GL
+       - Put glut32.lib inside C:/Program Files/Microsoft SDKs/Windows/"latest version"/Lib
+
+  - Install <a href="http://www.cmake.org">CMake</a>.
+    CMake is a Makefile generator and is used to create
+    makefiles for different compilers and operating systems.\n
+    This step is not necessary if using the lab machines, since
+    CMake is already installed there.
+
+  - Download support code <a href="Assignment1.zip">Assignment1.zip</a> and unzip
+
+  - Compile
+@code
+#Linux/Mac OS X
+         cd Assignment1
+         cmake . 
+         make
+
+#Windows (Microsoft Visual Studio)
+	open command prompt
+        cd Assignment1
+        cmake -G "Visual Studio 9 2008"
+        go to the Assignment1 folder and double-click on the .sln file
+        build the project
+@endcode
+    If OpenGL, GLU, and GLUT libraries were not found, then something
+    is wrong with your installation of these libraries. If you are
+    working in the lab machines, the compilation should not give you
+    any problems.
+
+  - Run the code (from the prompt command inside directory Assignment1)
+@code
+#Linux/Mac OS X
+       ./bin/RunBug obstacles1.txt
+
+#Windows  
+       open command prompt
+       cd Assignment1
+       bin\Debug\RunBug obstacles1.txt
+@endcode
+    where obstacles1.txt is one of the obstacle files (you can run it
+    with any of the provided obstacle files). You can use the
+    graphical interface to setup the initial robot center and
+    radius, goal center and radius, and sensor range
+    (right click to get menu; press F1 to get help).
+    Robot is shown in the red circle; goal region is shown in green;
+    obstacles are shown in blue.
+    Note that the robot does not do anything. It's your assignment
+    to implement the different control strategies and bug algorithms.
+   .
+
+
+    
+
+*/
+
+
